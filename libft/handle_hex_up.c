@@ -1,22 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   handle_hex_up.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 18:57:52 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/04/28 13:51:23 by jyniemit         ###   ########.fr       */
+/*   Created: 2025/04/18 14:23:22 by jyniemit          #+#    #+#             */
+/*   Updated: 2025/04/28 14:38:31 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+int	handle_hex_up(va_list args)
+{
+	char			str[16];
+	int				i;
+	unsigned int	num;
+	int				count;
 
-# ifndef MAX_SIZE
-#  define MAX_SIZE 500
-# endif
-
-# include "libft.h"
-
-#endif
+	i = 0;
+	count = 0;
+	num = va_arg(args, unsigned int);
+	if (num == 0)
+	{
+		write(1, "0", 1);
+		return (1);
+	}
+	while (num > 0)
+	{
+		str[i] = HEXHIGH[num % 16];
+		num /= 16;
+		i++;
+	}
+	while (i-- > 0)
+	{
+		write(1, &str[i], 1);
+		count++;
+	}
+	return (count);
+}

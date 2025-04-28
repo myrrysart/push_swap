@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: Jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 18:57:52 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/04/28 13:51:23 by jyniemit         ###   ########.fr       */
+/*   Created: 2024/11/11 12:48:56 by Jyniemit          #+#    #+#             */
+/*   Updated: 2024/11/11 12:49:06 by Jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# ifndef MAX_SIZE
-#  define MAX_SIZE 500
-# endif
+char	*ft_strchr(const char *s, int c)
+{
+	unsigned int	i;
 
-# include "libft.h"
-
-#endif
+	i = 0;
+	while (s[i] && s[i] != (char)c)
+		i++;
+	if (s[i] == (char)c)
+		return ((char *)&s[i]);
+	return (NULL);
+}

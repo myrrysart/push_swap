@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: Jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 18:57:52 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/04/28 13:51:23 by jyniemit         ###   ########.fr       */
+/*   Created: 2024/11/11 13:06:35 by Jyniemit          #+#    #+#             */
+/*   Updated: 2024/11/11 13:06:58 by Jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# ifndef MAX_SIZE
-#  define MAX_SIZE 500
-# endif
-
-# include "libft.h"
-
-#endif
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}

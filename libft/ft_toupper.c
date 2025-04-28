@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: Jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 18:57:52 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/04/28 13:51:23 by jyniemit         ###   ########.fr       */
+/*   Created: 2024/10/31 15:10:35 by Jyniemit          #+#    #+#             */
+/*   Updated: 2024/11/11 16:13:53 by Jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-
-# ifndef MAX_SIZE
-#  define MAX_SIZE 500
-# endif
-
-# include "libft.h"
-
-#endif
+int	ft_toupper(int c)
+{
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	return (c);
+}
