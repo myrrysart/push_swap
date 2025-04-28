@@ -6,14 +6,13 @@
 #    By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/28 15:01:26 by jyniemit          #+#    #+#              #
-#    Updated: 2025/04/28 15:06:31 by jyniemit         ###   ########.fr        #
+#    Updated: 2025/04/28 19:10:33 by jyniemit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-
 LIBFTDIR = ./libft/
 LIBFT = $(LIBFTDIR)libft.a
 
@@ -34,11 +33,11 @@ $(NAME): $(LIBFT) $(OBJDIR) $(OBJS) $(HEADER)
 $(LIBFT):
 	@make -C $(LIBFTDIR)
 
+$(OBJDIR)%.o: $(SRCDIR)%.c | $(OBJDIR)
+	$(CC) $(CFLAGS) -I$(INCLUDEDIR) -I$(LIBFTDIR) -c $< -o $@
+
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -I$(INCLUDEDIR) -I$(LIBFTDIR) -c $< -o $@
 
 clean:
 	@rm -rf $(OBJDIR)
@@ -48,6 +47,10 @@ fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIBFTDIR) fclean
 
+debug: CFLAGS += -g
+debug: re
+	@echo "Recompiling with debugflags: $(CFLAGS)"
+
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re debug
