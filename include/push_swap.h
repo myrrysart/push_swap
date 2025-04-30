@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:57:52 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/04/30 13:36:20 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/04/30 17:43:03 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 
 typedef struct s_stack
 {
-	int	*values;
-	int	size;
-} t_stack;
+	int			*values;
+	int			size;
+}	t_stack;
 
-enum e_op
+enum	e_op
 {
 	PA,
 	PB,
@@ -40,9 +40,9 @@ enum e_op
 	RRR
 };
 
-typedef void (*t_operation)(t_stack*, t_stack*, int*);
+typedef void	(*t_operation)(t_stack *, t_stack *, int *);
 // Game mode functions
-void print_stacks(t_stack *stack_a, t_stack *stack_b);
-void game_mode(t_stack *stack_a, t_stack *stack_b);
+void	print_stacks(t_stack *stack_a, t_stack *stack_b);
+void	game_mode(t_stack *stack_a, t_stack *stack_b);
 
 #endif
