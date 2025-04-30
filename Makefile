@@ -6,7 +6,7 @@
 #    By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/28 15:01:26 by jyniemit          #+#    #+#              #
-#    Updated: 2025/04/28 19:10:33 by jyniemit         ###   ########.fr        #
+#    Updated: 2025/04/30 13:47:40 by jyniemit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,10 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra
 LIBFTDIR = ./libft/
 LIBFT = $(LIBFTDIR)libft.a
-
 SRCDIR = ./src/
 SRCS = $(SRCDIR)main.c
-
 OBJDIR = ./build/
-OBJS = $(addprefix $(OBJDIR), $(SRCS:$(SRCDIR)%.c=%.o))
-
+OBJS = $(addprefix $(OBJDIR), $(notdir $(SRCS:.c=.o)))
 INCLUDEDIR = ./include/
 HEADER = $(addprefix $(INCLUDEDIR), push_swap.h)
 
@@ -36,6 +33,9 @@ $(LIBFT):
 $(OBJDIR)%.o: $(SRCDIR)%.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -I$(INCLUDEDIR) -I$(LIBFTDIR) -c $< -o $@
 
+$(GAME_OBJ): $(GAME_SRC) | $(OBJDIR)
+	$(CC) $(CFLAGS) -I$(INCLUDEDIR) -I$(LIBFTDIR) -c $< -o $@
+
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
 
@@ -45,6 +45,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -f $(GAME_NAME)
 	@make -C $(LIBFTDIR) fclean
 
 debug: CFLAGS += -g
@@ -53,4 +54,4 @@ debug: re
 
 re: fclean all
 
-.PHONY: all clean fclean re debug
+.PHONY: all clean fclean re debug game

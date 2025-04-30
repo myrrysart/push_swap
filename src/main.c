@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/30 17:39:37 by jyniemit          #+#    #+#             */
+/*   Updated: 2025/04/30 17:39:39 by jyniemit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	free_stacks(t_stack *stack_a, t_stack *stack_b, int ret)
@@ -24,6 +36,7 @@ int	free_stacks(t_stack *stack_a, t_stack *stack_b, int ret)
 	}
 	return (ret);
 }
+
 int	init_stacks(char **argv, t_stack *stack_a, t_stack *stack_b)
 {
 	int	i;
@@ -268,25 +281,68 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
+void	sort_turk(t_stack *stack_a, t_stack *stack_b, int *ops)
+{
+	// TODO
+	(void)stack_a;
+	(void)stack_b;
+	ops = 0;
+	return ;
+}
+
+void	sort_small(t_stack *stack_a, t_stack *stack_b, int *ops)
+{
+	int	top;
+	int	middle;
+	int	bottom;
+
+	if (is_sorted(stack_a))
+		return ;
+	top = stack_a->values[stack_a->size - 1];
+	middle = stack_a->values[stack_a->size - 2];
+	bottom = stack_a->values[stack_a->size - 3];
+	if (top > middle && middle > bottom)
+	{
+		operation(SA, stack_a, stack_b, ops);
+		operation(RRA, stack_a, stack_b, ops);
+	}
+	else if (top < middle && middle > bottom && top > bottom)
+		operation(RRA, stack_a, stack_b, ops);
+	else if (top > middle && middle < bottom && top > bottom)
+		operation(RA, stack_a, stack_b, ops);
+	else if (top < middle && middle > bottom && top < bottom)
+	{
+		operation(SA, stack_a, stack_b, ops);
+		operation(RA, stack_a, stack_b, ops);
+	}
+	else if (top > middle && middle < bottom && top < bottom)
+		operation(SA, stack_a, stack_b, ops);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	int		i;
 	int		ops;
 
+	if (argc < 2)
+		return (1);
 	stack_a = malloc(sizeof(t_stack));
 	stack_b = malloc(sizeof(t_stack));
-	i = 0;
-	argc = 0;
+	ops = 0;
+	if (!stack_a || !stack_b)
+		return (1);
 	if (init_stacks(argv, stack_a, stack_b))
 		return (free_stacks(stack_a, stack_b, 1));
-	operation(SA, stack_a, stack_b, &ops);
-	while (i < stack_a->size)
-		ft_printf("%d\n", stack_a->values[i++]);
-	if (is_sorted(stack_a))
-		ft_printf("Sorted!");
+	if (stack_a->size == 2)
+	{
+		if (stack_a->values[1] > stack_a->values[0])
+			operation(SA, stack_a, stack_b, &ops);
+		return (free_stacks(stack_a, stack_b, 0));
+	}
+	if (stack_a->size > 3)
+		sort_turk(stack_a, stack_b, &ops);
 	else
-		ft_printf("Not sorted!");
+		sort_small(stack_a, stack_b, &ops);
 	return (free_stacks(stack_a, stack_b, 0));
 }
