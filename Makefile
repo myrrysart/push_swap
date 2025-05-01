@@ -6,7 +6,7 @@
 #    By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/28 15:01:26 by jyniemit          #+#    #+#              #
-#    Updated: 2025/04/30 13:47:40 by jyniemit         ###   ########.fr        #
+#    Updated: 2025/05/01 19:56:51 by jyniemit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Werror -Wextra
 LIBFTDIR = ./libft/
 LIBFT = $(LIBFTDIR)libft.a
 SRCDIR = ./src/
-SRCS = $(SRCDIR)main.c
+SRCS = $(SRCDIR)main.c $(SRCDIR)turk_algorithm.c
 OBJDIR = ./build/
 OBJS = $(addprefix $(OBJDIR), $(notdir $(SRCS:.c=.o)))
 INCLUDEDIR = ./include/
