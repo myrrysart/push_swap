@@ -6,33 +6,33 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 17:39:37 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/05/01 19:55:45 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/05/05 17:51:11 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	free_stacks(t_stack *stack_a, t_stack *stack_b, int ret)
+void	safe_free(void *ptr)
 {
+	free(ptr);
+	ptr = NULL;
+}
+
+int	free_stacks(t_node *node, t_stack *stack_a, t_stack *stack_b, int ret)
+{
+	if (node)
+		safe_free(node);
 	if (stack_a)
 	{
 		if (stack_a->values)
-		{
-			free(stack_a->values);
-			stack_a->values = NULL;
-		}
-		free(stack_a);
-		stack_a = NULL;
+			safe_free(stack_a->values);
+		safe_free(stack_a);
 	}
 	if (stack_b)
 	{
 		if (stack_b->values)
-		{
-			free(stack_b->values);
-			stack_b->values = NULL;
-		}
-		free(stack_b);
-		stack_b = NULL;
+			safe_free(stack_b->values);
+		safe_free(stack_b);
 	}
 	if (ret)
 		ft_printf("Error\n");
@@ -110,10 +110,10 @@ int	init_stacks(char **argv, t_stack *stack_a, t_stack *stack_b)
 	j -= 1;
 	stack_a->values = malloc(sizeof(int) * j);
 	if (!stack_a->values)
-		return (free_stacks(stack_a, stack_b, 1));
+		return (free_stacks(NULL, stack_a, stack_b, 1));
 	stack_b->values = malloc(sizeof(int) * j);
 	if (!stack_b->values)
-		return (free_stacks(stack_a, stack_b, 1));
+		return (free_stacks(NULL, stack_a, stack_b, 1));
 	stack_a->size = j;
 	while (argv[++i])
 		stack_a->values[--j] = ft_atoi(argv[i]);
@@ -324,8 +324,6 @@ void	operation(enum e_op op, t_stack *stack_a, t_stack *stack_b, int *ops)
 	operations[RRR] = &rrr;
 	if (op >= 0 && op < 11)
 		operations[op](stack_a, stack_b, ops);
-	// debug
-	print_stacks(stack_a, stack_b);
 }
 
 int	is_sorted(t_stack *stack)
@@ -371,8 +369,6 @@ void	sort_small(t_stack *stack_a, t_stack *stack_b, int *ops)
 	}
 	else if (top > middle && middle < bottom && top < bottom)
 		operation(SA, stack_a, stack_b, ops);
-	// debug
-	print_stacks(stack_a, stack_b);
 }
 
 //DEBUG
@@ -418,34 +414,37 @@ int	check_for_duplicates(t_stack *stack_a)
 	}
 	return (0);
 }
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
+	t_node	*node;
 	int		ops;
 
 	ops = 0;
 	stack_a = malloc(sizeof(t_stack));
 	stack_b = malloc(sizeof(t_stack));
-	if (!stack_a || !stack_b || argc < 2)
-		return (free_stacks(stack_a, stack_b, 1));
+	node = malloc(sizeof(t_node));
+	if (!stack_a || !stack_b ||  !node || argc < 2)
+		return (free_stacks(node, stack_a, stack_b, 1));
 	if (argc == 2)
 	{
 		if (handle_arg(argv[1], stack_a, stack_b))
-			return (free_stacks(stack_a, stack_b, 1));
+			return (free_stacks(node, stack_a, stack_b, 1));
 	}
 	else
 	{
 		if (init_stacks(argv, stack_a, stack_b))
-			return (free_stacks(stack_a, stack_b, 1));
+			return (free_stacks(node, stack_a, stack_b, 1));
 	}
 	if (check_for_duplicates(stack_a))
-		return (free_stacks(stack_a, stack_b, 1));
+		return (free_stacks(node, stack_a, stack_b, 1));
 	if (stack_a->size == 2 || is_sorted(stack_a))
 	{
 		if (stack_a->values[1] > stack_a->values[0])
 			operation(SA, stack_a, stack_b, &ops);
-		return (free_stacks(stack_a, stack_b, 0));
+		return (free_stacks(node, stack_a, stack_b, 0));
 	}
 	if (stack_a->size > 3)
 		sort_turk(stack_a, stack_b, &ops);
@@ -453,5 +452,5 @@ int	main(int argc, char **argv)
 		sort_small(stack_a, stack_b, &ops);
 	print_stacks(stack_a, stack_b);
 	ft_printf("operations count: %d\n", ops);
-	return (free_stacks(stack_a, stack_b, 0));
+	return (free_stacks(node, stack_a, stack_b, 0));
 }

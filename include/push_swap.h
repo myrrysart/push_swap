@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:57:52 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/05/01 20:37:19 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/05/05 17:57:48 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_node
 {
 	int			value;
 	int			index;
-	int			target_pos;
+	int			target;
 	int			cost_a;
 	int			cost_b;
 	int			total_cost;
@@ -46,9 +46,6 @@ enum	e_op
 };
 
 typedef void	(*t_operation)(t_stack *, t_stack *, int *);
-// Game mode functions debug DEBUG
-void			print_stacks(t_stack *stack_a, t_stack *stack_b);
-void			game_mode(t_stack *stack_a, t_stack *stack_b);
 
 //sorting
 void			sort_turk(t_stack *stack_a, t_stack *stack_b, int *ops);
