@@ -6,7 +6,7 @@
 #    By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/28 15:01:26 by jyniemit          #+#    #+#              #
-#    Updated: 2025/05/01 19:56:51 by jyniemit         ###   ########.fr        #
+#    Updated: 2025/05/06 18:55:02 by jyniemit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,18 @@ CFLAGS = -Wall -Werror -Wextra
 LIBFTDIR = ./libft/
 LIBFT = $(LIBFTDIR)libft.a
 SRCDIR = ./src/
-SRCS = $(SRCDIR)main.c $(SRCDIR)turk_algorithm.c
+SRCS = $(SRCDIR)main.c \
+		$(SRCDIR)small_sort_and_validation.c \
+		$(SRCDIR)turk_algorithm.c \
+		$(SRCDIR)algorithm_utils.c \
+		$(SRCDIR)algorithm_execution_functions.c \
+		$(SRCDIR)algorithm_find_target.c \
+		$(srcdir)final_rotations.c \
+		$(srcdir)operations1.c \
+		$(srcdir)operations2.c \
+		$(srcdir)operations3.c \
+		$(srcdir)turk_helpers.c \
+		$(SRCDIR)algorithm_execution_functions_helpers.c
 OBJDIR = ./build/
 OBJS = $(addprefix $(OBJDIR), $(notdir $(SRCS:.c=.o)))
 INCLUDEDIR = ./include/
