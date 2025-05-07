@@ -6,14 +6,14 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:02:13 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/05/06 16:45:30 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/05/07 17:39:30 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	execute_both_rotations(t_stack *stack_a, t_stack *stack_b, t_node *node,
-	int *ops)
+static void	execute_both_rotations(t_stack *stack_a, t_stack *stack_b,
+	t_node *node, int *ops)
 {
 	while (stack_a->values[stack_a->size - 1] != node->target
 		&& stack_b->values[stack_b->size - 1] != node->value)
@@ -27,8 +27,8 @@ void	execute_both_rotations(t_stack *stack_a, t_stack *stack_b, t_node *node,
 	}
 }
 
-void	execute_a_rotations(t_stack *stack_a, t_stack *stack_b, t_node *node,
-	int *ops)
+static void	execute_a_rotations(t_stack *stack_a, t_stack *stack_b,
+	t_node *node, int *ops)
 {
 	while (stack_a->values[stack_a->size - 1] != node->target)
 	{
@@ -39,8 +39,8 @@ void	execute_a_rotations(t_stack *stack_a, t_stack *stack_b, t_node *node,
 	}
 }
 
-void	execute_b_rotations(t_stack *stack_a, t_stack *stack_b, t_node *node,
-	int *ops)
+static void	execute_b_rotations(t_stack *stack_a, t_stack *stack_b,
+	t_node *node, int *ops)
 {
 	while (stack_b->values[stack_b->size - 1] != node->value)
 	{
@@ -51,8 +51,8 @@ void	execute_b_rotations(t_stack *stack_a, t_stack *stack_b, t_node *node,
 	}
 }
 
-void	execute_operations(t_stack *stack_a, t_stack *stack_b, t_node *node,
-	int *ops)
+void	execute_operations(t_stack *stack_a, t_stack *stack_b,
+	t_node *node, int *ops)
 {
 	int	costs[4];
 

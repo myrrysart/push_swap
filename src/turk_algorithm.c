@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 19:48:45 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/05/06 16:59:21 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/05/07 15:50:26 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ void	calculate_cost(t_stack *stack_a, t_stack *stack_b, t_node *node,
 void	pre_sort_to_stack_b(t_stack *stack_a, t_stack *stack_b, int median,
 		int *ops)
 {
+	int	initial_size;
+
+	initial_size = stack_a->size;
 	while (stack_a->size > 3)
 	{
 		if (stack_a->values[stack_a->size - 1] < median)
