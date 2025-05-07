@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:57:52 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/05/07 12:38:43 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/05/07 18:54:10 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define PUSH_SWAP_H
 
 # include "libft.h"
+//for INT_MIN and INT_MAX
+# include <limits.h>
 
 typedef struct s_stack
 {
@@ -67,7 +69,7 @@ void			sort_small(t_stack *stack_a, t_stack *stack_b, int *ops);
 void			safe_free(void **ptr);
 int				free_stacks(t_node *node, t_stack *stack_a, t_stack *stack_b,
 					int ret);
-int				is_valid_number(char *str);
+int				is_valid_number(char *str, int *result);
 int				is_sorted(t_stack *stack);
 // Operations
 void			operation(enum e_op op, t_stack *stack_a, t_stack *stack_b,

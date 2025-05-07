@@ -6,13 +6,13 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 19:48:45 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/05/07 15:50:26 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/05/07 18:09:57 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	calculate_cost(t_stack *stack_a, t_stack *stack_b, t_node *node,
+static void	calculate_cost(t_stack *stack_a, t_stack *stack_b, t_node *node,
 		int b_index)
 {
 	if (node->index <= stack_a->size / 2)
@@ -26,12 +26,9 @@ void	calculate_cost(t_stack *stack_a, t_stack *stack_b, t_node *node,
 	node->total_cost = node->cost_a + node->cost_b;
 }
 
-void	pre_sort_to_stack_b(t_stack *stack_a, t_stack *stack_b, int median,
+static void	pre_sort_to_stack_b(t_stack *stack_a, t_stack *stack_b, int median,
 		int *ops)
 {
-	int	initial_size;
-
-	initial_size = stack_a->size;
 	while (stack_a->size > 3)
 	{
 		if (stack_a->values[stack_a->size - 1] < median)
@@ -44,7 +41,7 @@ void	pre_sort_to_stack_b(t_stack *stack_a, t_stack *stack_b, int median,
 	}
 }
 
-void	find_cheapest_node(t_stack *stack_a, t_stack *stack_b,
+static void	find_cheapest_node(t_stack *stack_a, t_stack *stack_b,
 		t_node *cheapest_node)
 {
 	t_node	current_node;

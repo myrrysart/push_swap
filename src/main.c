@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 17:39:37 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/05/07 17:36:23 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/05/07 18:54:06 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,8 @@ static int	handle_arg(char *arg, t_stack *stack_a, t_stack *stack_b)
 	stack_b->size = 0;
 	while (i < count)
 	{
-		if (is_valid_number(split_args[i]))
+		if (is_valid_number(split_args[i], &stack_a->values[count - 1 - i]))
 			return (safe_free_split_args(&split_args, 1));
-		stack_a->values[count - 1 - i] = ft_atoi(split_args[i]);
 		i++;
 	}
 	return (safe_free_split_args(&split_args, 0));
