@@ -6,29 +6,37 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 17:09:10 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/05/07 18:46:10 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/05/09 17:13:10 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	safe_free(void **ptr)
+static void	safe_free(void **ptr)
 {
 	if (ptr != NULL)
 	{
 		if (*ptr != NULL)
+		{
 			free(*ptr);
-		*ptr = NULL;
+			*ptr = NULL;
+		}
 	}
 }
 
 int	free_stacks(t_node *node, t_stack *stack_a, t_stack *stack_b, int ret)
 {
 	safe_free((void **)&node);
-	safe_free((void **)&stack_a->values);
-	safe_free((void **)&stack_a);
-	safe_free((void **)&stack_b->values);
-	safe_free((void **)&stack_b);
+	if (stack_a != NULL)
+	{
+		safe_free((void **)&stack_a->values);
+		safe_free((void **)&stack_a);
+	}
+	if (stack_b != NULL)
+	{
+		safe_free((void **)&stack_b->values);
+		safe_free((void **)&stack_b);
+	}
 	if (ret)
 		ft_printf("Error\n");
 	return (ret);
