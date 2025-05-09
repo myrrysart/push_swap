@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:57:52 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/05/07 18:54:10 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/05/09 17:11:51 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void			calculate_rotation_costs(t_stack *stack_a, t_stack *stack_b,
 void			final_rotate(t_stack *stack_a, t_stack *stack_b, int *ops);
 int				check_for_duplicates(t_stack *stack_a);
 void			sort_small(t_stack *stack_a, t_stack *stack_b, int *ops);
-void			safe_free(void **ptr);
 int				free_stacks(t_node *node, t_stack *stack_a, t_stack *stack_b,
 					int ret);
 int				is_valid_number(char *str, int *result);

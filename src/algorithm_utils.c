@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:21:01 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/05/07 18:57:13 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/05/09 15:06:16 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	find_median(t_stack *stack_a, int *median)
 	free(copy);
 }
 
-static int	ft_atoi_isvalid(const char *str, int *result)
+static int	ft_atoi_is_valid(const char *str, int *result)
 {
 	long	num;
 	int		sign;
@@ -82,7 +82,7 @@ int	is_valid_number(char *str, int *result)
 			return (1);
 		i++;
 	}
-	if (ft_atoi_isvalid(str, result))
+	if (ft_atoi_is_valid(str, result))
 		return (1);
 	return (0);
 }
