@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 17:39:37 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/05/07 18:54:06 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/05/09 17:04:41 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ static int	init_stacks(char **argv, t_stack *stack_a, t_stack *stack_b)
 	j -= 1;
 	stack_a->values = ft_calloc(j, sizeof(int));
 	if (!stack_a->values)
-		return (free_stacks(NULL, stack_a, stack_b, 1));
+		return (1);
 	stack_b->values = ft_calloc(j, sizeof(int));
 	if (!stack_b->values)
-		return (free_stacks(NULL, stack_a, stack_b, 1));
+		return (1);
 	stack_a->size = j;
 	while (argv[++i])
 		stack_a->values[--j] = ft_atoi(argv[i]);
