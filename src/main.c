@@ -72,7 +72,10 @@ static int	init_stacks(char **argv, t_stack *stack_a, t_stack *stack_b)
 		return (1);
 	stack_a->size = j;
 	while (argv[++i])
-		stack_a->values[--j] = ft_atoi(argv[i]);
+	{
+		if (is_valid_number(argv[i], &stack_a->values[--j]))
+			return (1);
+	}
 	stack_b->size = 0;
 	return (0);
 }
