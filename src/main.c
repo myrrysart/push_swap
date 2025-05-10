@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 17:39:37 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/05/10 10:11:14 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/05/10 10:49:45 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,12 @@ int	main(int argc, char **argv)
 	int		ops;
 
 	ops = 0;
+	if (argc < 2 || !argv[1])
+		return (1);
 	stack_a = ft_calloc(1, sizeof(t_stack));
 	stack_b = ft_calloc(1, sizeof(t_stack));
 	node = ft_calloc(1, sizeof(t_node));
-	if (!stack_a || !stack_b || !node || argc < 2)
+	if (!stack_a || !stack_b || !node)
 		return (free_stacks(node, stack_a, stack_b, 1));
 	if (handle_initialization(argc, argv, stack_a, stack_b))
 		return (free_stacks(node, stack_a, stack_b, 1));
